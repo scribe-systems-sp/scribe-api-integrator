@@ -553,69 +553,6 @@ export const BrokersApiFactory = function (configuration?: Configuration, basePa
 };
 
 /**
- * Request parameters for apiV1BrokersCreateBroker operation in BrokersApi.
- * @export
- * @interface BrokersApiApiV1BrokersCreateBrokerRequest
- */
-export interface BrokersApiApiV1BrokersCreateBrokerRequest {
-    /**
-     * 
-     * @type {Broker}
-     * @memberof BrokersApiApiV1BrokersCreateBroker
-     */
-    readonly broker: Broker
-}
-
-/**
- * Request parameters for apiV1BrokersDeleteBroker operation in BrokersApi.
- * @export
- * @interface BrokersApiApiV1BrokersDeleteBrokerRequest
- */
-export interface BrokersApiApiV1BrokersDeleteBrokerRequest {
-    /**
-     * 
-     * @type {BodyDeleteBrokerApiV1BrokersBrokerDelete}
-     * @memberof BrokersApiApiV1BrokersDeleteBroker
-     */
-    readonly bodyDeleteBrokerApiV1BrokersBrokerDelete: BodyDeleteBrokerApiV1BrokersBrokerDelete
-}
-
-/**
- * Request parameters for apiV1BrokersGetAllBrokers operation in BrokersApi.
- * @export
- * @interface BrokersApiApiV1BrokersGetAllBrokersRequest
- */
-export interface BrokersApiApiV1BrokersGetAllBrokersRequest {
-    /**
-     * Get only broker with specified id.
-     * @type {number}
-     * @memberof BrokersApiApiV1BrokersGetAllBrokers
-     */
-    readonly brokerId?: number
-
-    /**
-     * Return broker only with specified name.
-     * @type {string}
-     * @memberof BrokersApiApiV1BrokersGetAllBrokers
-     */
-    readonly name?: string
-
-    /**
-     * Return broker which has specified substring in his name.
-     * @type {string}
-     * @memberof BrokersApiApiV1BrokersGetAllBrokers
-     */
-    readonly nameSubstring?: string
-
-    /**
-     * Returns only specified parametres.
-     * @type {Array<string>}
-     * @memberof BrokersApiApiV1BrokersGetAllBrokers
-     */
-    readonly values?: Array<string>
-}
-
-/**
  * BrokersApi - object-oriented interface
  * @export
  * @class BrokersApi
@@ -625,37 +562,40 @@ export class BrokersApi extends BaseAPI {
     /**
      * Creates new broker with specified parametres.
      * @summary Create Broker
-     * @param {BrokersApiApiV1BrokersCreateBrokerRequest} requestParameters Request parameters.
+     * @param {Broker} broker 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BrokersApi
      */
-    public apiV1BrokersCreateBroker(requestParameters: BrokersApiApiV1BrokersCreateBrokerRequest, options?: any) {
-        return BrokersApiFp(this.configuration).apiV1BrokersCreateBroker(requestParameters.broker, options).then((request) => request(this.axios, this.basePath));
+    public apiV1BrokersCreateBroker(broker: Broker, options?: any) {
+        return BrokersApiFp(this.configuration).apiV1BrokersCreateBroker(broker, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Deletes broker. Note, that if the broker will be deleted, all the dependent timerecords for this broker will be also deleted cascadely.
      * @summary Delete Broker
-     * @param {BrokersApiApiV1BrokersDeleteBrokerRequest} requestParameters Request parameters.
+     * @param {BodyDeleteBrokerApiV1BrokersBrokerDelete} bodyDeleteBrokerApiV1BrokersBrokerDelete 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BrokersApi
      */
-    public apiV1BrokersDeleteBroker(requestParameters: BrokersApiApiV1BrokersDeleteBrokerRequest, options?: any) {
-        return BrokersApiFp(this.configuration).apiV1BrokersDeleteBroker(requestParameters.bodyDeleteBrokerApiV1BrokersBrokerDelete, options).then((request) => request(this.axios, this.basePath));
+    public apiV1BrokersDeleteBroker(bodyDeleteBrokerApiV1BrokersBrokerDelete: BodyDeleteBrokerApiV1BrokersBrokerDelete, options?: any) {
+        return BrokersApiFp(this.configuration).apiV1BrokersDeleteBroker(bodyDeleteBrokerApiV1BrokersBrokerDelete, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Returns all brokers using provided filter parametres
      * @summary Get All Brokers
-     * @param {BrokersApiApiV1BrokersGetAllBrokersRequest} requestParameters Request parameters.
+     * @param {number} [brokerId] Get only broker with specified id.
+     * @param {string} [name] Return broker only with specified name.
+     * @param {string} [nameSubstring] Return broker which has specified substring in his name.
+     * @param {Array<string>} [values] Returns only specified parametres.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BrokersApi
      */
-    public apiV1BrokersGetAllBrokers(requestParameters: BrokersApiApiV1BrokersGetAllBrokersRequest = {}, options?: any) {
-        return BrokersApiFp(this.configuration).apiV1BrokersGetAllBrokers(requestParameters.brokerId, requestParameters.name, requestParameters.nameSubstring, requestParameters.values, options).then((request) => request(this.axios, this.basePath));
+    public apiV1BrokersGetAllBrokers(brokerId?: number, name?: string, nameSubstring?: string, values?: Array<string>, options?: any) {
+        return BrokersApiFp(this.configuration).apiV1BrokersGetAllBrokers(brokerId, name, nameSubstring, values, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -1024,90 +964,6 @@ export const CardsApiFactory = function (configuration?: Configuration, basePath
 };
 
 /**
- * Request parameters for apiV1CardsCreateCard operation in CardsApi.
- * @export
- * @interface CardsApiApiV1CardsCreateCardRequest
- */
-export interface CardsApiApiV1CardsCreateCardRequest {
-    /**
-     * 
-     * @type {NewCard}
-     * @memberof CardsApiApiV1CardsCreateCard
-     */
-    readonly newCard: NewCard
-}
-
-/**
- * Request parameters for apiV1CardsDeleteCard operation in CardsApi.
- * @export
- * @interface CardsApiApiV1CardsDeleteCardRequest
- */
-export interface CardsApiApiV1CardsDeleteCardRequest {
-    /**
-     * 
-     * @type {BodyDeleteCardApiV1CardsCardDelete}
-     * @memberof CardsApiApiV1CardsDeleteCard
-     */
-    readonly bodyDeleteCardApiV1CardsCardDelete: BodyDeleteCardApiV1CardsCardDelete
-}
-
-/**
- * Request parameters for apiV1CardsFilterAndGet operation in CardsApi.
- * @export
- * @interface CardsApiApiV1CardsFilterAndGetRequest
- */
-export interface CardsApiApiV1CardsFilterAndGetRequest {
-    /**
-     * Get only card with specified id.
-     * @type {number}
-     * @memberof CardsApiApiV1CardsFilterAndGet
-     */
-    readonly id?: number
-
-    /**
-     * Return cards only for specified userIds.
-     * @type {number}
-     * @memberof CardsApiApiV1CardsFilterAndGet
-     */
-    readonly userId?: number
-
-    /**
-     * Return cards which has provided status.
-     * @type {boolean}
-     * @memberof CardsApiApiV1CardsFilterAndGet
-     */
-    readonly active?: boolean
-
-    /**
-     * Return card with specified secret.
-     * @type {string}
-     * @memberof CardsApiApiV1CardsFilterAndGet
-     */
-    readonly secret?: string
-
-    /**
-     * Only return specified fields.
-     * @type {Array<string>}
-     * @memberof CardsApiApiV1CardsFilterAndGet
-     */
-    readonly values?: Array<string>
-}
-
-/**
- * Request parameters for apiV1CardsSetActive operation in CardsApi.
- * @export
- * @interface CardsApiApiV1CardsSetActiveRequest
- */
-export interface CardsApiApiV1CardsSetActiveRequest {
-    /**
-     * 
-     * @type {BodySetActiveApiV1CardsSetActivePatch}
-     * @memberof CardsApiApiV1CardsSetActive
-     */
-    readonly bodySetActiveApiV1CardsSetActivePatch: BodySetActiveApiV1CardsSetActivePatch
-}
-
-/**
  * CardsApi - object-oriented interface
  * @export
  * @class CardsApi
@@ -1117,49 +973,53 @@ export class CardsApi extends BaseAPI {
     /**
      * Creates new card
      * @summary Create Card
-     * @param {CardsApiApiV1CardsCreateCardRequest} requestParameters Request parameters.
+     * @param {NewCard} newCard 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CardsApi
      */
-    public apiV1CardsCreateCard(requestParameters: CardsApiApiV1CardsCreateCardRequest, options?: any) {
-        return CardsApiFp(this.configuration).apiV1CardsCreateCard(requestParameters.newCard, options).then((request) => request(this.axios, this.basePath));
+    public apiV1CardsCreateCard(newCard: NewCard, options?: any) {
+        return CardsApiFp(this.configuration).apiV1CardsCreateCard(newCard, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Deleets card. Note, that if the card will be deleted, all the dependent timerecords for this card will be also deleted cascadely.
      * @summary Delete Card
-     * @param {CardsApiApiV1CardsDeleteCardRequest} requestParameters Request parameters.
+     * @param {BodyDeleteCardApiV1CardsCardDelete} bodyDeleteCardApiV1CardsCardDelete 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CardsApi
      */
-    public apiV1CardsDeleteCard(requestParameters: CardsApiApiV1CardsDeleteCardRequest, options?: any) {
-        return CardsApiFp(this.configuration).apiV1CardsDeleteCard(requestParameters.bodyDeleteCardApiV1CardsCardDelete, options).then((request) => request(this.axios, this.basePath));
+    public apiV1CardsDeleteCard(bodyDeleteCardApiV1CardsCardDelete: BodyDeleteCardApiV1CardsCardDelete, options?: any) {
+        return CardsApiFp(this.configuration).apiV1CardsDeleteCard(bodyDeleteCardApiV1CardsCardDelete, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Searches for and returns card using specified filter parametres.
      * @summary Filter And Get
-     * @param {CardsApiApiV1CardsFilterAndGetRequest} requestParameters Request parameters.
+     * @param {number} [id] Get only card with specified id.
+     * @param {number} [userId] Return cards only for specified userIds.
+     * @param {boolean} [active] Return cards which has provided status.
+     * @param {string} [secret] Return card with specified secret.
+     * @param {Array<string>} [values] Only return specified fields.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CardsApi
      */
-    public apiV1CardsFilterAndGet(requestParameters: CardsApiApiV1CardsFilterAndGetRequest = {}, options?: any) {
-        return CardsApiFp(this.configuration).apiV1CardsFilterAndGet(requestParameters.id, requestParameters.userId, requestParameters.active, requestParameters.secret, requestParameters.values, options).then((request) => request(this.axios, this.basePath));
+    public apiV1CardsFilterAndGet(id?: number, userId?: number, active?: boolean, secret?: string, values?: Array<string>, options?: any) {
+        return CardsApiFp(this.configuration).apiV1CardsFilterAndGet(id, userId, active, secret, values, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Activates or deactivates card. Deactivated cards are not permitted to do any actions.
      * @summary Set Active
-     * @param {CardsApiApiV1CardsSetActiveRequest} requestParameters Request parameters.
+     * @param {BodySetActiveApiV1CardsSetActivePatch} bodySetActiveApiV1CardsSetActivePatch 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CardsApi
      */
-    public apiV1CardsSetActive(requestParameters: CardsApiApiV1CardsSetActiveRequest, options?: any) {
-        return CardsApiFp(this.configuration).apiV1CardsSetActive(requestParameters.bodySetActiveApiV1CardsSetActivePatch, options).then((request) => request(this.axios, this.basePath));
+    public apiV1CardsSetActive(bodySetActiveApiV1CardsSetActivePatch: BodySetActiveApiV1CardsSetActivePatch, options?: any) {
+        return CardsApiFp(this.configuration).apiV1CardsSetActive(bodySetActiveApiV1CardsSetActivePatch, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -1361,41 +1221,6 @@ export const ConfigApiFactory = function (configuration?: Configuration, basePat
 };
 
 /**
- * Request parameters for apiV1ConfigGetBrokerConfig operation in ConfigApi.
- * @export
- * @interface ConfigApiApiV1ConfigGetBrokerConfigRequest
- */
-export interface ConfigApiApiV1ConfigGetBrokerConfigRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof ConfigApiApiV1ConfigGetBrokerConfig
-     */
-    readonly timestamp: string
-
-    /**
-     * 
-     * @type {string}
-     * @memberof ConfigApiApiV1ConfigGetBrokerConfig
-     */
-    readonly brokerName: string
-}
-
-/**
- * Request parameters for apiV1ConfigSetBrokerConfig operation in ConfigApi.
- * @export
- * @interface ConfigApiApiV1ConfigSetBrokerConfigRequest
- */
-export interface ConfigApiApiV1ConfigSetBrokerConfigRequest {
-    /**
-     * 
-     * @type {BodySetBrokerConfigApiV1ConfigBrokerPut}
-     * @memberof ConfigApiApiV1ConfigSetBrokerConfig
-     */
-    readonly bodySetBrokerConfigApiV1ConfigBrokerPut: BodySetBrokerConfigApiV1ConfigBrokerPut
-}
-
-/**
  * ConfigApi - object-oriented interface
  * @export
  * @class ConfigApi
@@ -1405,25 +1230,26 @@ export class ConfigApi extends BaseAPI {
     /**
      * Returns configuration of the broker. If provided timestamp is same returns only 304 status code.
      * @summary Get Broker Config
-     * @param {ConfigApiApiV1ConfigGetBrokerConfigRequest} requestParameters Request parameters.
+     * @param {string} timestamp 
+     * @param {string} brokerName 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConfigApi
      */
-    public apiV1ConfigGetBrokerConfig(requestParameters: ConfigApiApiV1ConfigGetBrokerConfigRequest, options?: any) {
-        return ConfigApiFp(this.configuration).apiV1ConfigGetBrokerConfig(requestParameters.timestamp, requestParameters.brokerName, options).then((request) => request(this.axios, this.basePath));
+    public apiV1ConfigGetBrokerConfig(timestamp: string, brokerName: string, options?: any) {
+        return ConfigApiFp(this.configuration).apiV1ConfigGetBrokerConfig(timestamp, brokerName, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Updates configuration for specific broker.
      * @summary Set Broker Config
-     * @param {ConfigApiApiV1ConfigSetBrokerConfigRequest} requestParameters Request parameters.
+     * @param {BodySetBrokerConfigApiV1ConfigBrokerPut} bodySetBrokerConfigApiV1ConfigBrokerPut 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConfigApi
      */
-    public apiV1ConfigSetBrokerConfig(requestParameters: ConfigApiApiV1ConfigSetBrokerConfigRequest, options?: any) {
-        return ConfigApiFp(this.configuration).apiV1ConfigSetBrokerConfig(requestParameters.bodySetBrokerConfigApiV1ConfigBrokerPut, options).then((request) => request(this.axios, this.basePath));
+    public apiV1ConfigSetBrokerConfig(bodySetBrokerConfigApiV1ConfigBrokerPut: BodySetBrokerConfigApiV1ConfigBrokerPut, options?: any) {
+        return ConfigApiFp(this.configuration).apiV1ConfigSetBrokerConfig(bodySetBrokerConfigApiV1ConfigBrokerPut, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -1919,146 +1745,6 @@ export const RecordsApiFactory = function (configuration?: Configuration, basePa
 };
 
 /**
- * Request parameters for apiV1RecordsCreateTimeRecord operation in RecordsApi.
- * @export
- * @interface RecordsApiApiV1RecordsCreateTimeRecordRequest
- */
-export interface RecordsApiApiV1RecordsCreateTimeRecordRequest {
-    /**
-     * 
-     * @type {TimeRecordFromBroker}
-     * @memberof RecordsApiApiV1RecordsCreateTimeRecord
-     */
-    readonly timeRecordFromBroker: TimeRecordFromBroker
-}
-
-/**
- * Request parameters for apiV1RecordsDeleteTimeRecord operation in RecordsApi.
- * @export
- * @interface RecordsApiApiV1RecordsDeleteTimeRecordRequest
- */
-export interface RecordsApiApiV1RecordsDeleteTimeRecordRequest {
-    /**
-     * 
-     * @type {BodyDeleteTimeRecordApiV1RecordsRecordDelete}
-     * @memberof RecordsApiApiV1RecordsDeleteTimeRecord
-     */
-    readonly bodyDeleteTimeRecordApiV1RecordsRecordDelete: BodyDeleteTimeRecordApiV1RecordsRecordDelete
-}
-
-/**
- * Request parameters for apiV1RecordsFilterAndCount operation in RecordsApi.
- * @export
- * @interface RecordsApiApiV1RecordsFilterAndCountRequest
- */
-export interface RecordsApiApiV1RecordsFilterAndCountRequest {
-    /**
-     * Match specific record id. If assigned, other filters doesnt make sens.
-     * @type {number}
-     * @memberof RecordsApiApiV1RecordsFilterAndCount
-     */
-    readonly recordId?: number
-
-    /**
-     * Match specific broker id. Response will contain records only for specified broker.
-     * @type {number}
-     * @memberof RecordsApiApiV1RecordsFilterAndCount
-     */
-    readonly brokerId?: number
-
-    /**
-     * Match specific card id. Response will contain records only for specified card.
-     * @type {number}
-     * @memberof RecordsApiApiV1RecordsFilterAndCount
-     */
-    readonly cardId?: number
-
-    /**
-     * Match specific user. Response will contain only records for specified user.
-     * @type {number}
-     * @memberof RecordsApiApiV1RecordsFilterAndCount
-     */
-    readonly userId?: number
-
-    /**
-     * Minimal timestamp to search for. Response will contain records that was added after specified time.
-     * @type {string}
-     * @memberof RecordsApiApiV1RecordsFilterAndCount
-     */
-    readonly minTime?: string
-
-    /**
-     * Maximum timestamp to search for. Response will contain records that was added before specified time.
-     * @type {string}
-     * @memberof RecordsApiApiV1RecordsFilterAndCount
-     */
-    readonly maxTime?: string
-
-    /**
-     * Response records will contain only specified data.
-     * @type {Array<string>}
-     * @memberof RecordsApiApiV1RecordsFilterAndCount
-     */
-    readonly values?: Array<string>
-}
-
-/**
- * Request parameters for apiV1RecordsFilterAndGet operation in RecordsApi.
- * @export
- * @interface RecordsApiApiV1RecordsFilterAndGetRequest
- */
-export interface RecordsApiApiV1RecordsFilterAndGetRequest {
-    /**
-     * Match specific record id. If assigned, other filters doesnt make sens.
-     * @type {number}
-     * @memberof RecordsApiApiV1RecordsFilterAndGet
-     */
-    readonly recordId?: number
-
-    /**
-     * Match specific broker id. Response will contain records only for specified broker.
-     * @type {number}
-     * @memberof RecordsApiApiV1RecordsFilterAndGet
-     */
-    readonly brokerId?: number
-
-    /**
-     * Match specific card id. Response will contain records only for specified card.
-     * @type {number}
-     * @memberof RecordsApiApiV1RecordsFilterAndGet
-     */
-    readonly cardId?: number
-
-    /**
-     * Match specific user. Response will contain only records for specified user.
-     * @type {number}
-     * @memberof RecordsApiApiV1RecordsFilterAndGet
-     */
-    readonly userId?: number
-
-    /**
-     * Minimal timestamp to search for. Response will contain records that was added after specified time.
-     * @type {string}
-     * @memberof RecordsApiApiV1RecordsFilterAndGet
-     */
-    readonly minTime?: string
-
-    /**
-     * Maximum timestamp to search for. Response will contain records that was added before specified time.
-     * @type {string}
-     * @memberof RecordsApiApiV1RecordsFilterAndGet
-     */
-    readonly maxTime?: string
-
-    /**
-     * Response records will contain only specified data.
-     * @type {Array<string>}
-     * @memberof RecordsApiApiV1RecordsFilterAndGet
-     */
-    readonly values?: Array<string>
-}
-
-/**
  * RecordsApi - object-oriented interface
  * @export
  * @class RecordsApi
@@ -2079,49 +1765,61 @@ export class RecordsApi extends BaseAPI {
     /**
      * Creates time record. Uses card secret to identify card. If card is not active, operation will fail.
      * @summary Create Time Record
-     * @param {RecordsApiApiV1RecordsCreateTimeRecordRequest} requestParameters Request parameters.
+     * @param {TimeRecordFromBroker} timeRecordFromBroker 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RecordsApi
      */
-    public apiV1RecordsCreateTimeRecord(requestParameters: RecordsApiApiV1RecordsCreateTimeRecordRequest, options?: any) {
-        return RecordsApiFp(this.configuration).apiV1RecordsCreateTimeRecord(requestParameters.timeRecordFromBroker, options).then((request) => request(this.axios, this.basePath));
+    public apiV1RecordsCreateTimeRecord(timeRecordFromBroker: TimeRecordFromBroker, options?: any) {
+        return RecordsApiFp(this.configuration).apiV1RecordsCreateTimeRecord(timeRecordFromBroker, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Deletes time record.
      * @summary Delete Time Record
-     * @param {RecordsApiApiV1RecordsDeleteTimeRecordRequest} requestParameters Request parameters.
+     * @param {BodyDeleteTimeRecordApiV1RecordsRecordDelete} bodyDeleteTimeRecordApiV1RecordsRecordDelete 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RecordsApi
      */
-    public apiV1RecordsDeleteTimeRecord(requestParameters: RecordsApiApiV1RecordsDeleteTimeRecordRequest, options?: any) {
-        return RecordsApiFp(this.configuration).apiV1RecordsDeleteTimeRecord(requestParameters.bodyDeleteTimeRecordApiV1RecordsRecordDelete, options).then((request) => request(this.axios, this.basePath));
+    public apiV1RecordsDeleteTimeRecord(bodyDeleteTimeRecordApiV1RecordsRecordDelete: BodyDeleteTimeRecordApiV1RecordsRecordDelete, options?: any) {
+        return RecordsApiFp(this.configuration).apiV1RecordsDeleteTimeRecord(bodyDeleteTimeRecordApiV1RecordsRecordDelete, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Counts recourds using specified filter. Returns records count instead of their values.
      * @summary Filter And Count
-     * @param {RecordsApiApiV1RecordsFilterAndCountRequest} requestParameters Request parameters.
+     * @param {number} [recordId] Match specific record id. If assigned, other filters doesnt make sens.
+     * @param {number} [brokerId] Match specific broker id. Response will contain records only for specified broker.
+     * @param {number} [cardId] Match specific card id. Response will contain records only for specified card.
+     * @param {number} [userId] Match specific user. Response will contain only records for specified user.
+     * @param {string} [minTime] Minimal timestamp to search for. Response will contain records that was added after specified time.
+     * @param {string} [maxTime] Maximum timestamp to search for. Response will contain records that was added before specified time.
+     * @param {Array<string>} [values] Response records will contain only specified data.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RecordsApi
      */
-    public apiV1RecordsFilterAndCount(requestParameters: RecordsApiApiV1RecordsFilterAndCountRequest = {}, options?: any) {
-        return RecordsApiFp(this.configuration).apiV1RecordsFilterAndCount(requestParameters.recordId, requestParameters.brokerId, requestParameters.cardId, requestParameters.userId, requestParameters.minTime, requestParameters.maxTime, requestParameters.values, options).then((request) => request(this.axios, this.basePath));
+    public apiV1RecordsFilterAndCount(recordId?: number, brokerId?: number, cardId?: number, userId?: number, minTime?: string, maxTime?: string, values?: Array<string>, options?: any) {
+        return RecordsApiFp(this.configuration).apiV1RecordsFilterAndCount(recordId, brokerId, cardId, userId, minTime, maxTime, values, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Searches for records using specified filter. Returns list of lists with values (and their order) that was specified by filter options
      * @summary Filter And Get
-     * @param {RecordsApiApiV1RecordsFilterAndGetRequest} requestParameters Request parameters.
+     * @param {number} [recordId] Match specific record id. If assigned, other filters doesnt make sens.
+     * @param {number} [brokerId] Match specific broker id. Response will contain records only for specified broker.
+     * @param {number} [cardId] Match specific card id. Response will contain records only for specified card.
+     * @param {number} [userId] Match specific user. Response will contain only records for specified user.
+     * @param {string} [minTime] Minimal timestamp to search for. Response will contain records that was added after specified time.
+     * @param {string} [maxTime] Maximum timestamp to search for. Response will contain records that was added before specified time.
+     * @param {Array<string>} [values] Response records will contain only specified data.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RecordsApi
      */
-    public apiV1RecordsFilterAndGet(requestParameters: RecordsApiApiV1RecordsFilterAndGetRequest = {}, options?: any) {
-        return RecordsApiFp(this.configuration).apiV1RecordsFilterAndGet(requestParameters.recordId, requestParameters.brokerId, requestParameters.cardId, requestParameters.userId, requestParameters.minTime, requestParameters.maxTime, requestParameters.values, options).then((request) => request(this.axios, this.basePath));
+    public apiV1RecordsFilterAndGet(recordId?: number, brokerId?: number, cardId?: number, userId?: number, minTime?: string, maxTime?: string, values?: Array<string>, options?: any) {
+        return RecordsApiFp(this.configuration).apiV1RecordsFilterAndGet(recordId, brokerId, cardId, userId, minTime, maxTime, values, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
