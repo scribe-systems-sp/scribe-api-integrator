@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/scribe-systems-sp/scribe-api-integrator#readme",
   "dependencies": {
-    "axios": "^0.19.2"
-  }
+    "axios": "^0.19.2",
+    "modularus": "^1.2.9"
+  },
+  "devDependencies": {}
 }
