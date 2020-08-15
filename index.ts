@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-
+export * from "./modularus"
 export * from "./api";
 export * from "./configuration";
 
