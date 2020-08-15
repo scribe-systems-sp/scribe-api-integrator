@@ -22,7 +22,7 @@ export default class ModularusIntegratorApi extends SApi {
     loadedInterceptors: any[] = []
 
     getApiIdentifier(): String {   
-        return "IntegratorApi"
+        return "IntegratorAPI"
     }
     async isLoaded(): Promise<boolean> {
         return this.loaded
