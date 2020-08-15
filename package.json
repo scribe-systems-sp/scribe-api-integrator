@@ -1,0 +1,22 @@
+{
+  "name": "@scribe-systems/scribe-api-integrator",
+  "version": "1.0.0",
+  "description": "API for scribe integrator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scribe-systems-sp/scribe-api-integrator.git"
+  },
+  "author": "Scribe Systems Sp. z o. o.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/scribe-systems-sp/scribe-api-integrator/issues"
+  },
+  "homepage": "https://github.com/scribe-systems-sp/scribe-api-integrator#readme",
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}
