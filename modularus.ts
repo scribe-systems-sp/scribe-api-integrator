@@ -52,6 +52,7 @@ export default class ModularusIntegratorApi extends SApi {
             let nr = this.apiClient?.usedAxios.interceptors.request.use(element)
             this.loadedInterceptors.push(nr)
         }
-        return await this.apiClient
+        
+        return this.apiClient
     }
 }
