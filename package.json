@@ -1,6 +1,6 @@
 {
   "name": "@scribe-systems/scribe-api-integrator",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "API for scribe integrator",
   "main": "index.js",
   "scripts": {
