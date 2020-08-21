@@ -3,6 +3,7 @@ import Axios, { AxiosStatic } from 'axios'
 
 import { BrokersApi, CardsApi, ConfigApi, RecordsApi } from './api'
 import { Configuration } from './configuration'
+import qs from "qs"
 
 declare global {
     interface Window { Modularus: Modularus; }
@@ -28,6 +29,10 @@ export default class ModularusIntegratorApi extends SApi {
         return this.loaded
     }
     async loadApi(baseURL: string): Promise<void> {
+        Axios.defaults.paramsSerializer = params => {
+            return qs.stringify(params)
+        }
+        console.log(Axios.defaults)
         const configuration = new Configuration({ basePath: baseURL })
 
         this.apiClient = {
