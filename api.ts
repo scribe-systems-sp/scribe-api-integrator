@@ -234,7 +234,7 @@ export interface TimeRecordFromBroker {
      * @type {string}
      * @memberof TimeRecordFromBroker
      */
-    cardSecret: string;
+    cardSecret?: string;
     /**
      * 
      * @type {string}
@@ -247,6 +247,12 @@ export interface TimeRecordFromBroker {
      * @memberof TimeRecordFromBroker
      */
     note?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof TimeRecordFromBroker
+     */
+    user_id?: number;
 }
 /**
  * 
@@ -1423,10 +1429,12 @@ export const RecordsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {string} [minTime] Minimal timestamp to search for. Response will contain records that was added after specified time.
          * @param {string} [maxTime] Maximum timestamp to search for. Response will contain records that was added before specified time.
          * @param {Array<string>} [values] Response records will contain only specified data.
+         * @param {number} [offset] How many record to skip
+         * @param {number} [limit] Limit max records count to specified value
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1RecordsFilterAndCount: async (recordId?: number, brokerId?: number, cardId?: number, userId?: number, minTime?: string, maxTime?: string, values?: Array<string>, options: any = {}): Promise<RequestArgs> => {
+        apiV1RecordsFilterAndCount: async (recordId?: number, brokerId?: number, cardId?: number, userId?: number, minTime?: string, maxTime?: string, values?: Array<string>, offset?: number, limit?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/integrator/api/v1/records/count`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -1479,6 +1487,14 @@ export const RecordsApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['values'] = values;
             }
 
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
 
     
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -1507,10 +1523,12 @@ export const RecordsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {string} [minTime] Minimal timestamp to search for. Response will contain records that was added after specified time.
          * @param {string} [maxTime] Maximum timestamp to search for. Response will contain records that was added before specified time.
          * @param {Array<string>} [values] Response records will contain only specified data.
+         * @param {number} [offset] How many record to skip
+         * @param {number} [limit] Limit max records count to specified value
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1RecordsFilterAndGet: async (recordId?: number, brokerId?: number, cardId?: number, userId?: number, minTime?: string, maxTime?: string, values?: Array<string>, options: any = {}): Promise<RequestArgs> => {
+        apiV1RecordsFilterAndGet: async (recordId?: number, brokerId?: number, cardId?: number, userId?: number, minTime?: string, maxTime?: string, values?: Array<string>, offset?: number, limit?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/integrator/api/v1/records/all`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -1561,6 +1579,14 @@ export const RecordsApiAxiosParamCreator = function (configuration?: Configurati
 
             if (values) {
                 localVarQueryParameter['values'] = values;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
             }
 
 
@@ -1641,11 +1667,13 @@ export const RecordsApiFp = function(configuration?: Configuration) {
          * @param {string} [minTime] Minimal timestamp to search for. Response will contain records that was added after specified time.
          * @param {string} [maxTime] Maximum timestamp to search for. Response will contain records that was added before specified time.
          * @param {Array<string>} [values] Response records will contain only specified data.
+         * @param {number} [offset] How many record to skip
+         * @param {number} [limit] Limit max records count to specified value
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1RecordsFilterAndCount(recordId?: number, brokerId?: number, cardId?: number, userId?: number, minTime?: string, maxTime?: string, values?: Array<string>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RecordsCount>> {
-            const localVarAxiosArgs = await RecordsApiAxiosParamCreator(configuration).apiV1RecordsFilterAndCount(recordId, brokerId, cardId, userId, minTime, maxTime, values, options);
+        async apiV1RecordsFilterAndCount(recordId?: number, brokerId?: number, cardId?: number, userId?: number, minTime?: string, maxTime?: string, values?: Array<string>, offset?: number, limit?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RecordsCount>> {
+            const localVarAxiosArgs = await RecordsApiAxiosParamCreator(configuration).apiV1RecordsFilterAndCount(recordId, brokerId, cardId, userId, minTime, maxTime, values, offset, limit, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1661,11 +1689,13 @@ export const RecordsApiFp = function(configuration?: Configuration) {
          * @param {string} [minTime] Minimal timestamp to search for. Response will contain records that was added after specified time.
          * @param {string} [maxTime] Maximum timestamp to search for. Response will contain records that was added before specified time.
          * @param {Array<string>} [values] Response records will contain only specified data.
+         * @param {number} [offset] How many record to skip
+         * @param {number} [limit] Limit max records count to specified value
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1RecordsFilterAndGet(recordId?: number, brokerId?: number, cardId?: number, userId?: number, minTime?: string, maxTime?: string, values?: Array<string>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await RecordsApiAxiosParamCreator(configuration).apiV1RecordsFilterAndGet(recordId, brokerId, cardId, userId, minTime, maxTime, values, options);
+        async apiV1RecordsFilterAndGet(recordId?: number, brokerId?: number, cardId?: number, userId?: number, minTime?: string, maxTime?: string, values?: Array<string>, offset?: number, limit?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await RecordsApiAxiosParamCreator(configuration).apiV1RecordsFilterAndGet(recordId, brokerId, cardId, userId, minTime, maxTime, values, offset, limit, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1719,11 +1749,13 @@ export const RecordsApiFactory = function (configuration?: Configuration, basePa
          * @param {string} [minTime] Minimal timestamp to search for. Response will contain records that was added after specified time.
          * @param {string} [maxTime] Maximum timestamp to search for. Response will contain records that was added before specified time.
          * @param {Array<string>} [values] Response records will contain only specified data.
+         * @param {number} [offset] How many record to skip
+         * @param {number} [limit] Limit max records count to specified value
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1RecordsFilterAndCount(recordId?: number, brokerId?: number, cardId?: number, userId?: number, minTime?: string, maxTime?: string, values?: Array<string>, options?: any): AxiosPromise<RecordsCount> {
-            return RecordsApiFp(configuration).apiV1RecordsFilterAndCount(recordId, brokerId, cardId, userId, minTime, maxTime, values, options).then((request) => request(axios, basePath));
+        apiV1RecordsFilterAndCount(recordId?: number, brokerId?: number, cardId?: number, userId?: number, minTime?: string, maxTime?: string, values?: Array<string>, offset?: number, limit?: number, options?: any): AxiosPromise<RecordsCount> {
+            return RecordsApiFp(configuration).apiV1RecordsFilterAndCount(recordId, brokerId, cardId, userId, minTime, maxTime, values, offset, limit, options).then((request) => request(axios, basePath));
         },
         /**
          * Searches for records using specified filter. Returns list of lists with values (and their order) that was specified by filter options
@@ -1735,11 +1767,13 @@ export const RecordsApiFactory = function (configuration?: Configuration, basePa
          * @param {string} [minTime] Minimal timestamp to search for. Response will contain records that was added after specified time.
          * @param {string} [maxTime] Maximum timestamp to search for. Response will contain records that was added before specified time.
          * @param {Array<string>} [values] Response records will contain only specified data.
+         * @param {number} [offset] How many record to skip
+         * @param {number} [limit] Limit max records count to specified value
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1RecordsFilterAndGet(recordId?: number, brokerId?: number, cardId?: number, userId?: number, minTime?: string, maxTime?: string, values?: Array<string>, options?: any): AxiosPromise<any> {
-            return RecordsApiFp(configuration).apiV1RecordsFilterAndGet(recordId, brokerId, cardId, userId, minTime, maxTime, values, options).then((request) => request(axios, basePath));
+        apiV1RecordsFilterAndGet(recordId?: number, brokerId?: number, cardId?: number, userId?: number, minTime?: string, maxTime?: string, values?: Array<string>, offset?: number, limit?: number, options?: any): AxiosPromise<any> {
+            return RecordsApiFp(configuration).apiV1RecordsFilterAndGet(recordId, brokerId, cardId, userId, minTime, maxTime, values, offset, limit, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1796,12 +1830,14 @@ export class RecordsApi extends BaseAPI {
      * @param {string} [minTime] Minimal timestamp to search for. Response will contain records that was added after specified time.
      * @param {string} [maxTime] Maximum timestamp to search for. Response will contain records that was added before specified time.
      * @param {Array<string>} [values] Response records will contain only specified data.
+     * @param {number} [offset] How many record to skip
+     * @param {number} [limit] Limit max records count to specified value
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RecordsApi
      */
-    public apiV1RecordsFilterAndCount(recordId?: number, brokerId?: number, cardId?: number, userId?: number, minTime?: string, maxTime?: string, values?: Array<string>, options?: any) {
-        return RecordsApiFp(this.configuration).apiV1RecordsFilterAndCount(recordId, brokerId, cardId, userId, minTime, maxTime, values, options).then((request) => request(this.axios, this.basePath));
+    public apiV1RecordsFilterAndCount(recordId?: number, brokerId?: number, cardId?: number, userId?: number, minTime?: string, maxTime?: string, values?: Array<string>, offset?: number, limit?: number, options?: any) {
+        return RecordsApiFp(this.configuration).apiV1RecordsFilterAndCount(recordId, brokerId, cardId, userId, minTime, maxTime, values, offset, limit, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1814,12 +1850,14 @@ export class RecordsApi extends BaseAPI {
      * @param {string} [minTime] Minimal timestamp to search for. Response will contain records that was added after specified time.
      * @param {string} [maxTime] Maximum timestamp to search for. Response will contain records that was added before specified time.
      * @param {Array<string>} [values] Response records will contain only specified data.
+     * @param {number} [offset] How many record to skip
+     * @param {number} [limit] Limit max records count to specified value
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RecordsApi
      */
-    public apiV1RecordsFilterAndGet(recordId?: number, brokerId?: number, cardId?: number, userId?: number, minTime?: string, maxTime?: string, values?: Array<string>, options?: any) {
-        return RecordsApiFp(this.configuration).apiV1RecordsFilterAndGet(recordId, brokerId, cardId, userId, minTime, maxTime, values, options).then((request) => request(this.axios, this.basePath));
+    public apiV1RecordsFilterAndGet(recordId?: number, brokerId?: number, cardId?: number, userId?: number, minTime?: string, maxTime?: string, values?: Array<string>, offset?: number, limit?: number, options?: any) {
+        return RecordsApiFp(this.configuration).apiV1RecordsFilterAndGet(recordId, brokerId, cardId, userId, minTime, maxTime, values, offset, limit, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
